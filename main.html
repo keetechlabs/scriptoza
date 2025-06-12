@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scriptoza | Main</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+    body {
+     margin: 0;
+     color: #222;
+     overflow-x: hidden;
+     background-image: url('./imgs/page\ background.png'); 
+     background-size: cover;         
+     background-repeat: no-repeat;   
+     background-position: center;   
+     background-attachment: fixed;   
+    }
+
+
+    header {
+     display: flex;
+     justify-content: space-between;
+     padding: 10px 20px 0px;
+     align-items: center;
+     background: rgba(255, 255, 255, 0); 
+     backdrop-filter: blur(5px);
+     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .left-header h1 { 
+      color: #000; 
+      text-decoration: underline; 
+    }
+    .logo-container img:hover {
+      transform: scale(1.1);
+    }
+
+    .logo-container img {
+      max-height: 130px;
+      height: auto;
+      border-radius: 50%;     
+    }
+
+    
+
+    .right-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    .logout-btn {
+      background-color: #f83069;
+      border: none;
+      color: white;
+      font-size: 20px;
+      padding: 20px 40px;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 6px 6px 0 #222;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .logout-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 8px 8px 0 #222;
+      background-color: #ff0048;
+    }
+    .categories {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .category-btn {
+      background-color: #f83069;
+      border: none;
+      color: white;
+      font-size: 22px;
+      padding: 20px 40px;
+      margin: 25px;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      animation: bounceIn 0.6s ease forwards;
+    }
+    .category-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 8px 8px 0 #222;
+      background-color: #ff0048;
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+      font-size: 24px;
+      user-select: none;
+      pointer-events: none;
+    }
+    .action-buttons {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .action-buttons button {
+      background-color: #ffb700;
+      border: none;
+      color: #000;
+      font-size: 20px;
+      padding: 16px 30px;
+      margin: 15px;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 #222;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .action-buttons button:hover {
+      transform: scale(1.08);
+      box-shadow: 6px 6px 0 #000;
+    }
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 6px 6px 0 #222;
+    }
+    .modal-content input,
+    .modal-content select,
+    .modal-content textarea {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      width: 100%;
+      font-family: 'Fredoka One', cursive;
+    }
+    .modal-content textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    .modal-content button {
+      background-color: #00aaff;
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 16px 30px;
+      margin: 15px;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 #222;
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      background-color: #ff6b6b;
+      color: white;
+      font-weight: bold;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      box-shadow: 3px 3px 0 #222;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .hidden { 
+      display: none; 
+    }
+
+    footer {
+     color: #fff;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+</head>
+<body>
+
+  <header>
+   <div class="left-header">
+     <div class="logo-container">
+       <a href="#">
+       <img src="./imgs/transparent logo.png" alt="Logo">
+     </a>
+     </div>
+   </div>
+
+     
+    <div class="right-header">
+      <span id="userName">User</span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="categories" id="categoryContainer">
+    <button class="category-btn" onclick="showOptions('Novels')">
+      <span class="material-symbols-outlined">menu_book</span> Novels
+    </button>
+    <button class="category-btn" onclick="showOptions('Comics')">
+      <span class="material-symbols-outlined">comedy_mask</span> Comics
+    </button>
+    <button class="category-btn" onclick="showOptions('Confessions')">
+      <span class="material-symbols-outlined">person_celebrate</span> Confessions
+    </button>
+    <button class="category-btn" onclick="showOptions('Fantasies')">
+      <span class="material-symbols-outlined">wand_stars</span> Fantasies
+    </button>
+
+    <div class="action-buttons hidden" id="actionButtons">
+      <h3 id="categoryTitle"></h3>
+      <button onclick="openWriteForm()"><span class="material-symbols-outlined">ink_pen</span>Write</button>
+      <button onclick="openUploadForm()"><span class="material-symbols-outlined">ios_share</span>Upload</button>
+    </div>
+  </div>
+
+  <div id="writeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeWriteForm()">&times;</span>
+      <h3 id="writeTitle">Write Your Story</h3>
+      <input type="text" id="storyTitle" placeholder="Story Title" />
+      <select id="storyType" onchange="toggleChapterFields()">
+        <option value="full">Full Story</option>
+        <option value="chapter">Chapter</option>
+      </select>
+      <div id="chapterFields" class="hidden">
+        <input type="text" id="chapterNumber" placeholder="Chapter Number" />
+      </div>
+      <textarea id="storyText" placeholder="Write your story here..."></textarea>
+      <input type="text" id="author" placeholder="Author" />
+      <button onclick="submitStory()">Submit Story</button>
+    </div>
+  </div>
+
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeUploadForm()">&times;</span>
+      <h3 id="uploadTitle">Upload a File</h3>
+      <select id="storyType" onchange="toggleChapterFields()">
+        <option value="full">Full Story</option>
+        <option value="chapter">Chapter</option>
+      </select>
+      <div id="chapterFields" class="hidden">
+        <input type="text" id="chapterNumber" placeholder="Chapter Number" />
+        <input type="text" id="storyTitle" placeholder="Story Title" />
+      </div>
+      <input type="file" id="fileInput" />
+      <input type="text" id="uploadAuthor" placeholder="Author" />
+      <button onclick="submitUpload()">Upload File</button>
+    </div>
+  </div>
+  
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDwrFJHXGuHZL95lMhMHAPBwZGAaY4bi90",
+      authDomain: "ktl-employee-login.firebaseapp.com",
+      databaseURL: "https://ktl-employee-login-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "ktl-employee-login",
+      storageBucket: "ktl-employee-login.firebasestorage.app",
+      messagingSenderId: "733033006704",
+      appId: "1:733033006704:web:aaa6c7f7147e833fbb16b5"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    let currentCategory = '';
+    let currentUserName = '';
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        firebase.database().ref("users/" + user.uid).once("value").then(snapshot => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            document.getElementById("userName").textContent = userData.fullName || "user";
+            currentUserName = userData.fullName || "user";
+          } else {
+            alert("User data not found. Redirecting to login.");
+            logout();
+          }
+        });
+      } else {
+        location.href = "index.html";
+      }
+    });
+
+    function logout() {
+      if (confirm("Are you sure you want to logout?")) {
+        firebase.auth().signOut().then(() => {
+          location.href = "index.html";
+        });
+      }
+    }
+
+    function showOptions(category) {
+      currentCategory = category;
+      document.getElementById("categoryTitle").textContent = "Selected: " + category;
+      document.getElementById("actionButtons").classList.remove("hidden");
+    }
+
+    function closeWriteForm() {
+      document.getElementById("writeModal").style.display = "none";
+      resetWriteForm();
+    }
+
+    function openWriteForm() {
+      if (!currentCategory) {
+        return alert("Please select a category first.");
+      }
+      document.getElementById("writeModal").style.display = "flex";
+      document.getElementById("writeTitle").textContent = `Write Your ${currentCategory} Story`;
+      resetWriteForm();
+    }
+
+    function closeUploadForm() {
+      document.getElementById("uploadModal").style.display = "none";
+      resetUploadForm();
+    }
+
+    function openUploadForm() {
+      if (!currentCategory) {
+        return alert("Please select a category first.");
+      }
+      document.getElementById("uploadModal").style.display = "flex";
+      document.getElementById("uploadTitle").textContent = `Upload File for ${currentCategory}`;
+      resetUploadForm();
+    }
+
+    function toggleChapterFields() {
+      const type = document.getElementById("storyType").value;
+      document.getElementById("chapterFields").classList.toggle("hidden", type === "full");
+    }
+
+    function resetWriteForm() {
+      document.getElementById("storyType").value = "full";
+      toggleChapterFields();
+      document.getElementById("chapterNumber").value = "";
+      document.getElementById("storyTitle").value = "";
+      document.getElementById("storyText").value = "";
+      document.getElementById("author").value = currentUserName;
+    }
+
+    function resetUploadForm() {
+      document.getElementById("storyType").value = "full";
+      toggleChapterFields();
+      document.getElementById("chapterNumber").value = "";
+      document.getElementById("storyTitle").value = "";
+      document.getElementById("fileInput").value = "";
+      document.getElementById("uploadAuthor").value = currentUserName;
+    }
+
+    function getTimestamp() {
+      const d = new Date();
+      return (
+        String(d.getDate()).padStart(2, '0') +
+        String(d.getMonth()+1).padStart(2, '0') +
+        d.getFullYear() +
+        ' ' +
+        String(d.getHours()).padStart(2, '0') +
+        String(d.getMinutes()).padStart(2, '0') +
+        String(d.getSeconds()).padStart(2, '0')
+      );
+    }
+
+    function submitStory() {
+      const type = document.getElementById("storyType").value;
+      const chapterNumber = document.getElementById("chapterNumber").value.trim();
+      const title = document.getElementById("storyTitle").value.trim() || (type === "full" ? "Untitled" : "");
+      const content = document.getElementById("storyText").value.trim();
+      const penName = document.getElementById("author").value.trim();
+      if (!content || !penName) return alert("Please fill required fields.");
+
+      const user = firebase.auth().currentUser;
+      if (!user) return alert("User not authenticated.");
+
+      const storyRef = firebase.database().ref("stories").push();
+      const storyKey = storyRef.key;
+      const written_at = getTimestamp();
+
+      if (type === "chapter") {
+        if (!chapterNumber || !title) return alert("Please fill chapter number and title.");
+        const chapRef = firebase.database().ref(`stories/${storyKey}/chapters`).push();
+        chapRef.set({
+          uid: user.uid,
+          pen_name: penName,
+          has_chapters: true,
+          chapter_number: chapterNumber,
+          title: title,
+           no_of_likes : 0,
+          no_of_dislikes :0,
+          rating:0.0,
+          no_of_views:0,
+          no_of_ads_watched:0,
+          amountEarned:0,
+          isFree: true,
+          content: content,
+          written_at
+        }).then(() => {
+          alert("Story uploaded successfully."); location.href = "main.html";
+        });
+      } else {
+        storyRef.set({
+          uid: user.uid,
+          pen_name: penName,
+          has_chapters: false,
+          chapter_number: null,
+          title: title,
+          content: content,
+          no_of_likes : 0,
+          no_of_dislikes :0,
+          rating:0.0,
+          no_of_views:0,
+          no_of_ads_watched:0,
+          amountEarned:0,
+          isFree: true,
+      
+          written_at
+        }).then(() => {
+          alert("Story uploaded successfully."); location.href = "main.html";
+        });
+      }
+    }
+
+    function submitUpload() {
+      const type = document.getElementById("storyType").value;
+      const chapterNumber = document.getElementById("chapterNumber").value.trim();
+      const title = document.getElementById("storyTitle").value.trim() || "";
+      const fileInput = document.getElementById("fileInput");
+      const penName = document.getElementById("uploadAuthor").value.trim();
+      if (!fileInput.files.length || !penName) return alert("Please select a file and enter author.");
+
+      const user = firebase.auth().currentUser;
+      if (!user) return alert("User not authenticated.");
+
+      const file = fileInput.files[0];
+      const storageRef = firebase.storage().ref();
+      const path = `uploads/${user.uid}_${Date.now()}_${file.name}`;
+      const uploadTask = storageRef.child(path).put(file);
+
+      uploadTask.on('state_changed', null, e => alert("Upload failed: " + e.message), () => {
+        uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+          const storyRef = firebase.database().ref("users/${uid}stories").push();
+          const storyKey = storyRef.key;
+          const written_at = getTimestamp();
+
+          if (type === "chapter") {
+            if (!chapterNumber || !title) return alert("Please fill chapter number and title.");
+            firebase.database().ref(`stories/${storyKey}/chapters`).push({
+              uid: user.uid,
+              pen_name: penName,
+              has_chapters: true,
+              chapter_number: chapterNumber,
+              title: title,
+              content: downloadURL,
+              written_at
+            }).then(() => {
+              alert("File uploaded successfully."); location.href = "main.html";
+            });
+          } else {
+            storyRef.set({
+              uid: user.uid,
+              pen_name: penName,
+              has_chapters: false,
+              chapter_number: null,
+              title: title || file.name,
+              content: downloadURL,
+              written_at
+            }).then(() => {
+              alert("File uploaded successfully."); location.href = "main.html";
+            });
+          }
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

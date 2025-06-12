@@ -1,0 +1,369 @@
+body {
+  margin: 0;
+  background-image: url('./imgs/page\ background.png');
+  background-color: #f2f2f2;              
+  background-size: cover;
+  background-position: center;
+  color: #333;
+}
+
+.landing header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 0px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0); 
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.name {
+  color: black;
+  text-decoration: underline;
+}
+
+
+.logo {
+  width: 100px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.name:hover {
+  transform: scale(1.1);
+}
+
+.logo-container img:hover {
+  transform: scale(1.1);
+}
+
+.logo-container img {
+  max-height: 130px;
+  height: auto;
+  border-radius: 50%;     
+}
+
+.download-btn {
+  background-color: #00aaff;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 16px 30px;
+  margin: 15px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #222;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-btn {
+  background-color: #f83069;
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 20px 40px;
+  margin: 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 #222;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  animation: bouncein 0.6s ease forwards;
+}
+
+.login-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 8px 8px 0 #222;
+  background-color: #ff0048;
+}
+
+.centered {
+  text-align: center;
+  margin-top: 80px;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.centered h1 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5em;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.centered p {
+  font-size: 1.5rem;
+  margin: 0.3em 0;
+  animation: fadeIn 2s ease forwards;
+}
+
+
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+  background-color: #020528;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+  animation: slideIn 0.4s ease forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content input {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus {
+  border-color: #00aaff;
+  outline: none;
+}
+
+.modal-content button {
+  background-color: #f83069;
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 20px 40px;
+  margin: 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  animation: bouncein 0.6s ease forwards;
+}
+
+.modal-content button:hover {
+  transform: scale(1.1);
+  background-color: #ff0048;
+}
+
+
+.modal-content a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.modal-content p {
+  color: #fff;
+
+}
+
+.modal-content a:hover {
+  text-decoration: underline;
+}
+.modal-content h2 {
+  color: white ;
+}
+.close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+.forgot-password {
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+  text-align: right;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.terms-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  width: 80%;
+  margin: 10px auto;
+  gap: 8px;
+  color: aliceblue;
+}
+
+.terms-label input[type="checkbox"] {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.feature-card {
+  max-width: 1500px;
+  max-height: 700px;
+  margin: 60px auto 100px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  overflow: hidden;
+  color: white;
+  font-family: alumni sans 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+  animation: fadeSlideIn 1s ease forwards;
+}
+
+.feature-card .card-content {
+  flex: 1;
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeInLeft 1.2s ease forwards;
+}
+
+.feature-card .card-content h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+.feature-card .card-content p {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.feature-card .card-image {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.feature-card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+  transition: transform 0.5s ease;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.feature-card .card-image img:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.feature-card .download-btn {
+  background-color: #fff;
+  color: #ff0048;
+  font-weight: 600;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
+  transition: all 0.4s ease;
+  width: fit-content;
+}
+
+.feature-card .download-btn:hover {
+  background-color: #ff0048;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+footer {
+  margin-top: -60px;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .feature-card {
+    flex-direction: column;
+    max-width: 80%;
+    border-radius: 20px;
+    max-height: max-content;
+  }
+
+  .feature-card .card-content {
+    padding: 30px 20px;
+  }
+}
