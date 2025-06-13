@@ -6,6 +6,8 @@
   <title>Scriptoza | Comic and Story Platform</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+
+
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -14,29 +16,26 @@
   <div class="landing">
     <header>
       <div class="logo-container">
-       <a href="#">
-       <img src="./imgs/transparent logo.png" alt="Logo">
-     </a>
-     </div>
+        <a href="#">
+          <img src="./imgs/transparent logo.png" alt="Scriptoza Logo">
+        </a>
+      </div>
       <button class="login-btn" onclick="showLogin()">Login</button>
     </header>
 
-    
     <section class="feature-card animate-card">
       <div class="card-content">
-        
-
         <h2>Scriptoza</h2>
-         <p>"Where Stories Spark and Fantasies Roam Free."</p>
-         <p>Welcome to Scriptoza — a digital platform for comics, short stories,
-          and novels where creators earn real money.
-          With a game-changing 80/20 split 80% to authors, 
-          20% to us, your stories bring you real rewards. 
-          Share, grow, and get paid for your creativity.</p>
+        <p>"Where Stories Spark and Fantasies Roam Free."</p>
+        <p>
+          Welcome to Scriptoza — a digital platform for comics, short stories, and novels where creators earn real money.
+          With a game-changing 80/20 split — 80% to authors, 20% to us — your stories bring you real rewards.
+          Share, grow, and get paid for your creativity.
+        </p>
         <button class="download-btn" onclick="downloadApp()">Download App</button>
       </div>
       <div class="card-image">
-        <img src="./imgs/comic boy 1.png" alt="comic_image" />
+        <img src="./imgs/comic boy 1.png" alt="Comic Illustration" />
       </div>
     </section>
   </div>
@@ -44,8 +43,11 @@
   <div class="modal" id="authModal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <img src="./imgs/scriptozalogo.jpeg" class="logo" />
+      <img src="./imgs/transparent logo.png" class="logo" alt="Scriptoza Logo" />
       <div id="authFormWrapper">
+
+
+
         <div id="loginForm">
           <h2>Login</h2>
           <input type="email" id="loginEmail" placeholder="Email" required />
@@ -59,6 +61,8 @@
           <p>Don't have an account? <a href="#" onclick="switchToSignup()">Sign Up</a></p>
         </div>
 
+
+
         <div id="signupForm" style="display: none;">
           <h2>Sign Up</h2>
           <input type="text" id="fullName" placeholder="Full Name" required />
@@ -66,7 +70,7 @@
           <input type="password" id="password" placeholder="Password" required />
           <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
           <label class="terms-label">
-          <input type="checkbox" id="signupTerms" />
+            <input type="checkbox" id="signupTerms" />
             I accept the <a href="#">Terms & Conditions</a>
           </label>
           <button onclick="signUp()">Submit</button>
@@ -76,9 +80,10 @@
     </div>
   </div>
 
+  <footer>
+    <h3>&copy; Scriptoza @2025. All Rights Reserved.</h3>
+  </footer>
+
   <script src="script.js"></script>
 </body>
-<footer>
-  <h3>&copy;Scriptoza @2025. All Rights Reserved.</h3>
-</footer>
 </html>
