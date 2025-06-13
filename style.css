@@ -26,12 +26,12 @@ body {
   text-decoration: underline;
 }
 
-
 .logo {
-  width: 100px;
+  width: 130px;
   border-radius: 50%;
   transition: transform 0.3s ease;
 }
+
 .name:hover {
   transform: scale(1.1);
 }
@@ -205,15 +205,16 @@ body {
 
 .modal-content p {
   color: #fff;
-
 }
 
 .modal-content a:hover {
   text-decoration: underline;
 }
+
 .modal-content h2 {
   color: white ;
 }
+
 .close {
   position: absolute;
   top: 8px;
@@ -291,7 +292,6 @@ body {
   flex: 1;
   position: relative;
   overflow: hidden;
-
 }
 
 .feature-card .card-image img {
@@ -371,3 +371,8 @@ footer {
     padding: 30px 20px;
   }
 }
+
+
+
+
+
