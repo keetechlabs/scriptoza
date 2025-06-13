@@ -14,7 +14,7 @@ body {
 .landing header {
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px 0px;
+  padding: 0px 20px 0px;
   align-items: center;
   background: rgba(255, 255, 255, 0); 
   backdrop-filter: blur(5px);
@@ -253,7 +253,7 @@ body {
 .feature-card {
   max-width: 1500px;
   max-height: 700px;
-  margin: 60px auto 100px;
+  margin: 50px auto 100px;
   background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
   border-radius: 25px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
