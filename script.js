@@ -72,15 +72,9 @@ function signUp() {
 function login() {
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
-  const termsAccepted = document.getElementById("loginTerms").checked;
 
   if (!email || !password) {
     alert("Please enter email and password.");
-    return;
-  }
-
-  if (!termsAccepted) {
-    alert("You must accept the terms and conditions to login.");
     return;
   }
 
